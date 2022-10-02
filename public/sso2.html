@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <meta name="description" content="description" />
+    <meta name="author" content="author" />
+    <meta name="keywords" content="keywords" />
+    <!-- <link rel="stylesheet" href="./stylesheet.css" type="text/css" /> -->
+    <script src='/sso.js'></script>
+    <style type="text/css">
+        .body {
+            width: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        var x = new SSOVinorSoftFE({
+            realmUrl: 'https://demo1.nodejsauto.com/realms/keycloak-express',
+            clientId: 'keycloak-express-2',
+            callbackUrl: 'http://127.0.0.1:3001/login?auth_callback=1',
+            debug: true
+        });
+        top.location.href = x.getLoginUrl();
+
+
+
+    </script>
+
+</body>
+
+</html>

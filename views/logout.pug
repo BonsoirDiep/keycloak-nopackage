@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  script.
+    var x = new SSOVinorSoftFE({
+      realmUrl: 'https://demo1.nodejsauto.com/realms/keycloak-express',
+      clientId: '!{clientId}',
+      callbackUrl: '!{callbackUrl}'
+    });
+    console.log('Login:', x.getLoginUrl());
+    var store = localforage.createInstance({
+      name: "sso-vinorsoft"
+    });
+    store.clear();

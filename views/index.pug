@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  script.
+    var x = new SSOVinorSoftFE({
+      realmUrl: 'https://demo1.nodejsauto.com/realms/keycloak-express',
+      clientId: '!{clientId}',
+      callbackUrl: '!{callbackUrl}'
+    });
+    console.log('Login:', x.getLoginUrl());
+  if data
+    script.
+      var store = localforage.createInstance({
+        name: "sso-vinorsoft"
+      });
+      var token= !{JSON.stringify(data)};
+      console.log('Logout:', x.logoutUrl('http://127.0.0.2:3000/logout', token.id_token));
+      console.log(token);
+      // Setting the key on one of these doesn't affect the other.
+      store.setItem("token", token);
+  else
+    script.
+      var store = localforage.createInstance({
+        name: "sso-vinorsoft"
+      });
+      var token= {};
+      store.getItem('token', function(err, data){
+        if(err || !data) return;
+        token= data;
+        console.log('Logout:', x.logoutUrl('http://127.0.0.2:3000/logout', token.id_token));
+        console.log(token);
+      });
