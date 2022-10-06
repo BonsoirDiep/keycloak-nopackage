@@ -5,7 +5,7 @@ block content
   p Welcome to #{title}
   script.
     var x = new SSOVinorSoftFE({
-      realmUrl: 'https://demo1.nodejsauto.com/realms/keycloak-express',
+      realmUrl: '!{realmUrl}',
       clientId: '!{clientId}',
       callbackUrl: '!{callbackUrl}'
     });
@@ -16,7 +16,7 @@ block content
         name: "sso-vinorsoft"
       });
       var token= !{JSON.stringify(data)};
-      console.log('Logout:', x.logoutUrl('http://127.0.0.2:3000/logout', token.id_token));
+      console.log('Logout:', x.logoutUrl('!{logOutUrl}', token.id_token));
       console.log(token);
       // Setting the key on one of these doesn't affect the other.
       store.setItem("token", token);
@@ -29,6 +29,6 @@ block content
       store.getItem('token', function(err, data){
         if(err || !data) return;
         token= data;
-        console.log('Logout:', x.logoutUrl('http://127.0.0.2:3000/logout', token.id_token));
+        console.log('Logout:', x.logoutUrl('!{logOutUrl}', token.id_token));
         console.log(token);
       });

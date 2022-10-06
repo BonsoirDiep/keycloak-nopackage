@@ -645,7 +645,7 @@ class SSOVinorSoft {
 
         var checkSid= new Token(rfToken);
 
-        if(checkSid.content.sid!= sessionId) {
+        if(sessionId && checkSid.content.sid!= sessionId) {
             callback({message: 'Another login found, check again.'});
             return;
         }

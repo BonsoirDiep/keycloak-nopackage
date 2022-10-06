@@ -1,2 +1,8 @@
-node bin\www => 127.0.0.2:3000
-node bin\www 3001 => 127.0.0.1:3001
+# Bash
+```
+node bin\www => api.sp1.test
+node bin\www 3001 => api.sp2.test
+```
+
+# See nginx.conf
+Have fun!!!

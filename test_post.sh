@@ -1,3 +1,3 @@
-curl -X POST http://127.0.0.2:3000/json \
+curl -X POST http://api.sp1.test/json \
    -H 'Content-Type: application/json' \
    -d '{"login":"my_login","password":"'$1'"}'
